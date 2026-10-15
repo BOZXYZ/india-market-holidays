@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: day
-        uses: YOUR_GITHUB_USER/marketholidays@v1
+        uses: <your-github-user>/marketholidays@v1
         with:
           calendar: nse
       - if: steps.day.outputs.is_business_day == 'true'
@@ -35,7 +35,7 @@ Move a payment date to the next working day for a city's banks:
 
 ```yaml
 - id: pay
-  uses: YOUR_GITHUB_USER/marketholidays@v1
+  uses: <your-github-user>/marketholidays@v1
   with: { calendar: "bank:mumbai", date: "2026-11-10", convention: modified_following }
 - run: echo "Pay on ${{ steps.pay.outputs.adjusted_date }}"
 ```
