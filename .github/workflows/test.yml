@@ -1,0 +1,26 @@
+name: test
+on: [push, pull_request]
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "${{ matrix.python }}" }
+      - run: pip install -e 'python[test]'
+      - run: pytest python
+  action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: sunday
+        uses: ./
+        with: { calendar: nse, date: "2026-11-08" }
+      - run: test "${{ steps.sunday.outputs.is_business_day }}" = "false" && test "${{ steps.sunday.outputs.adjusted_date }}" = "2026-11-09"
+      - id: monday
+        uses: ./
+        with: { calendar: nse, date: "2026-11-09" }
+      - run: test "${{ steps.monday.outputs.is_business_day }}" = "true"

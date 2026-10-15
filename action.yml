@@ -1,0 +1,52 @@
+name: "Indian market business day check"
+description: "Check whether a date is a business day on NSE, BSE, MCX or Indian banks (marketholidays.in) and get the adjusted date. Use it to skip scheduled jobs on market holidays."
+author: "marketholidays.in"
+branding:
+  icon: "calendar"
+  color: "blue"
+
+inputs:
+  calendar:
+    description: "Calendar(s), comma separated. nse, bse, mcx, clearing, currency, bank, bank:<city>. A day is a business day only if open in all of them."
+    required: true
+  date:
+    description: "Date to check, YYYY-MM-DD. Defaults to today in India (IST)."
+    required: false
+    default: ""
+  convention:
+    description: "Adjustment rule for the adjusted_date output: following, modified_following, preceding, modified_preceding."
+    required: false
+    default: "following"
+  fail-on-closed:
+    description: "Fail the step when the date is not a business day."
+    required: false
+    default: "false"
+
+outputs:
+  is_business_day:
+    description: "'true' or 'false'"
+    value: ${{ steps.check.outputs.is_business_day }}
+  adjusted_date:
+    description: "The date moved to a business day using the convention (same as date when it already is one)."
+    value: ${{ steps.check.outputs.adjusted_date }}
+  days_shifted:
+    description: "Calendar days between date and adjusted_date (negative = moved back)."
+    value: ${{ steps.check.outputs.days_shifted }}
+  reason:
+    description: "Why the date is closed, when it is."
+    value: ${{ steps.check.outputs.reason }}
+  date:
+    description: "The date that was checked."
+    value: ${{ steps.check.outputs.date }}
+
+runs:
+  using: "composite"
+  steps:
+    - id: check
+      shell: bash
+      env:
+        MH_CALENDAR: ${{ inputs.calendar }}
+        MH_DATE: ${{ inputs.date }}
+        MH_CONVENTION: ${{ inputs.convention }}
+        MH_FAIL_ON_CLOSED: ${{ inputs.fail-on-closed }}
+      run: bash "${{ github.action_path }}/scripts/check.sh"
