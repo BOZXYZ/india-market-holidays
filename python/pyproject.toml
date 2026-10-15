@@ -23,7 +23,7 @@ dependencies = ["tzdata; platform_system == \"Windows\""]
 [project.urls]
 Homepage = "https://marketholidays.in/api-docs"
 Documentation = "https://marketholidays.in/api-docs"
-Source = "https://github.com/<your-github-user>/marketholidays"
+Source = "https://github.com/BOZXYZ/marketholidays"
 
 [project.scripts]
 marketholidays = "marketholidays.cli:main"
