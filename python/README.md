@@ -1,10 +1,12 @@
-# marketholidays
+# india-market-holidays (Python)
 
 Indian market and bank holidays and business day adjustment in Python. A small client (standard library only) for the free [marketholidays.in API](https://marketholidays.in/api-docs): NSE, BSE, MCX, NSE settlement days, NSE currency derivatives, and RBI bank calendars for each city.
 
 ```bash
-pip install marketholidays
+pip install india-market-holidays
 ```
+
+The package installs the Python module `marketholidays` and a `marketholidays` command.
 
 ```python
 import marketholidays as mh

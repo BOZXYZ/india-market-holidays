@@ -3,7 +3,7 @@ requires = ["hatchling>=1.18"]
 build-backend = "hatchling.build"
 
 [project]
-name = "marketholidays"
+name = "india-market-holidays"
 version = "0.1.0"
 description = "Indian market and bank holidays and business day adjustment (NSE, BSE, MCX, RBI city bank calendars) via the marketholidays.in API."
 readme = "README.md"

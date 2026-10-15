@@ -3,7 +3,7 @@
 Tools for Indian market and bank business days, built on the free [marketholidays.in API](https://marketholidays.in/api-docs):
 
 - **GitHub Action**: skip or gate workflow steps on NSE, BSE, MCX or bank holidays.
-- **Python package** (`python/`): `pip install marketholidays`, plus a `marketholidays check` command for cron jobs.
+- **Python package** (`python/`): `pip install india-market-holidays` (import it as `marketholidays`), plus a `marketholidays check` command for cron jobs.
 
 Calendars: `nse`, `bse`, `mcx`, `clearing`, `currency`, `bank`, `bank:<city>`. Combine with commas; a day is a business day only if it is open in all of them.
 
