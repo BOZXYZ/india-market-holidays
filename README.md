@@ -1,5 +1,7 @@
 # marketholidays
 
+[![NSE status today](https://marketholidays.in/badge/nse.svg)](https://marketholidays.in/is-market-open-today)
+
 Tools for Indian market and bank business days, built on the free [marketholidays.in API](https://marketholidays.in/api-docs):
 
 - **GitHub Action**: skip or gate workflow steps on NSE, BSE, MCX or bank holidays.
